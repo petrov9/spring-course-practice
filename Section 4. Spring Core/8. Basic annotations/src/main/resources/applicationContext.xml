@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+<!--    <context:component-scan base-package="com.baeldung.applicationcontext"/>-->
+
+    <bean class="org.course.basic_annotations_1.step3_import.MenuOrder" id="menuOrder"
+      scope="prototype"
+      init-method="init"
+    >
+        <aop:scoped-proxy proxy-target-class="true"/>
+    </bean>
+
+    <bean class="org.course.basic_annotations_1.step3_import.RestaurantService" id="restaurantService">
+        <constructor-arg ref="menuOrder"/>
+    </bean>
+
+</beans>
